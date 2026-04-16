@@ -20,6 +20,33 @@ document.addEventListener('DOMContentLoaded', () => {
     heroGetStarted.addEventListener('click', showApp);
     backBtn.addEventListener('click', showLanding);
 
+    // ---- Hero Text Animation ----
+    const heroHeading = document.querySelector('.hero h1');
+    if (heroHeading) {
+        const text = heroHeading.textContent;
+        heroHeading.textContent = '';
+        let globalIndex = 0;
+        
+        text.split(' ').forEach(word => {
+            const wordSpan = document.createElement('span');
+            wordSpan.style.display = 'inline-block';
+            wordSpan.style.whiteSpace = 'nowrap';
+            
+            word.split('').forEach(char => {
+                const charSpan = document.createElement('span');
+                charSpan.textContent = char;
+                charSpan.className = 'letter-anim';
+                // 80ms staggered delay
+                charSpan.style.animationDelay = `${globalIndex * 80}ms`;
+                wordSpan.appendChild(charSpan);
+                globalIndex++;
+            });
+            
+            heroHeading.appendChild(wordSpan);
+            heroHeading.appendChild(document.createTextNode(' '));
+            globalIndex++;
+        });
+    }
 
     // ---- Form Elements ----
     const form = document.getElementById('prediction-form');
