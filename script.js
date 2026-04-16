@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const navGetStarted = document.getElementById('nav-get-started');
     const heroGetStarted = document.getElementById('hero-get-started');
     const backBtn = document.getElementById('back-btn');
+    const navLogo = document.getElementById('nav-logo');
 
     function showApp() {
         landingView.classList.add('hidden');
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     navGetStarted.addEventListener('click', showApp);
     heroGetStarted.addEventListener('click', showApp);
     backBtn.addEventListener('click', showLanding);
+    if (navLogo) navLogo.addEventListener('click', showLanding);
 
     // ---- Theme Toggle ----
     const themeToggle = document.getElementById('theme-toggle');
