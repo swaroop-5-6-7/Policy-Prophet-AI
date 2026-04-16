@@ -20,6 +20,52 @@ document.addEventListener('DOMContentLoaded', () => {
     heroGetStarted.addEventListener('click', showApp);
     backBtn.addEventListener('click', showLanding);
 
+    // ---- Theme Toggle ----
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = themeToggle.querySelector('i');
+    
+    // Check for saved theme
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    updateThemeIcon(currentTheme);
+
+    themeToggle.addEventListener('click', () => {
+        const theme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        updateThemeIcon(theme);
+        
+        // Update Chart if it exists
+        if (chartInstance) {
+            updateChartTheme();
+        }
+    });
+
+    function updateThemeIcon(theme) {
+        if (theme === 'dark') {
+            themeIcon.className = 'fa-solid fa-sun';
+        } else {
+            themeIcon.className = 'fa-solid fa-moon';
+        }
+    }
+
+    function updateChartTheme() {
+        const style = getComputedStyle(document.documentElement);
+        const surfaceContainer = style.getPropertyValue('--surface-container').trim();
+        const primary = style.getPropertyValue('--primary').trim();
+        const secondary = style.getPropertyValue('--secondary').trim();
+        const inversePrimary = style.getPropertyValue('--on-primary-fixed-variant').trim();
+        const gridColor = style.getPropertyValue('--surface-container-high').trim();
+
+        chartInstance.data.datasets[0].backgroundColor = [
+            surfaceContainer,
+            inversePrimary,
+            secondary
+        ];
+        chartInstance.options.scales.y.grid.color = gridColor;
+        chartInstance.update();
+    }
+
     // ---- Hero Text Animation ----
     const heroHeading = document.querySelector('.hero h1');
     if (heroHeading) {
@@ -114,6 +160,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const nationalAvg = 18500;
         const geoAvg = predictedCost * 1.15; // slightly higher logic to make user feel good
 
+        const style = getComputedStyle(document.documentElement);
+        const surfaceContainer = style.getPropertyValue('--surface-container').trim();
+        const secondary = style.getPropertyValue('--secondary').trim();
+        const inversePrimary = style.getPropertyValue('--on-primary-fixed-variant').trim();
+        const gridColor = style.getPropertyValue('--surface-container-high').trim();
+
         chartInstance = new Chart(ctx, {
             type: 'bar',
             data: {
@@ -122,9 +174,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     label: 'Annual Premium (₹)',
                     data: [nationalAvg, geoAvg, predictedCost],
                     backgroundColor: [
-                        '#eceef0', // surface-container
-                        '#b0c9e8', // inverse-primary
-                        '#006b5e'  // secondary
+                        surfaceContainer,
+                        inversePrimary,
+                        secondary
                     ],
                     borderRadius: 6
                 }]
@@ -152,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 scales: {
                     y: { 
                         beginAtZero: true,
-                        grid: { color: '#e6e8ea' }
+                        grid: { color: gridColor }
                     },
                     x: {
                         grid: { display: false }

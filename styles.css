@@ -29,6 +29,34 @@
     --outline-variant: rgba(195, 198, 206, 0.15); /* Ghost Border */
 
     --ambient-shadow: 0px 12px 32px rgba(25, 28, 30, 0.06);
+    
+    --navbar-bg: rgba(247, 249, 251, 0.85);
+}
+
+[data-theme="dark"] {
+    --surface: #111315;
+    --surface-container-low: #181a1c;
+    --surface-container: #1e2022;
+    --surface-container-high: #292d30;
+    --surface-container-lowest: #0c0e0f;
+
+    --primary: #f7f9fb;
+    --primary-container: #3d566f;
+    --on-primary-fixed-variant: #e0e9f4;
+    
+    --secondary: #5eead0;
+    --secondary-container: #005146;
+    
+    --tertiary-container: #004d61;
+    --on-tertiary-fixed: #e2f6ff;
+
+    --on-surface: #e4e6e8;
+    --on-surface-variant: #abadb0;
+    --outline-variant: rgba(255, 255, 255, 0.1);
+
+    --ambient-shadow: 0px 12px 32px rgba(0, 0, 0, 0.4);
+    
+    --navbar-bg: rgba(17, 19, 21, 0.85);
 }
 
 body {
@@ -48,7 +76,7 @@ h1, h2, h3, h4, .nav-brand, .price, .badge, .title {
     justify-content: space-between;
     align-items: center;
     padding: 1.25rem 3rem;
-    background-color: rgba(247, 249, 251, 0.8);
+    background-color: var(--navbar-bg);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     position: sticky;
@@ -78,6 +106,27 @@ h1, h2, h3, h4, .nav-brand, .price, .badge, .title {
 
 .nav-links a:hover {
     color: var(--primary);
+}
+
+.theme-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--surface-container-high);
+    color: var(--on-surface-variant);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: all 0.2s ease;
+}
+
+.theme-btn:hover {
+    background-color: var(--surface-container-high);
+    color: var(--primary);
+    transform: scale(1.05);
 }
 
 .nav-btn {
