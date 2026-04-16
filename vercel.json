@@ -16,6 +16,10 @@
         {
             "src": "script.js",
             "use": "@vercel/static"
+        },
+        {
+            "src": "doctor.json",
+            "use": "@vercel/static"
         }
     ],
     "routes": [
