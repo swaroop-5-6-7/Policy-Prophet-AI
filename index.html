@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Chart.js for visualizations -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lottie Player -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -191,7 +193,16 @@
                         
                         <!-- Empty State Wrapper -->
                         <div id="result-empty-state">
-                            <i class="fa-solid fa-chart-simple placeholder-icon"></i>
+                            <div style="display: flex; justify-content: center; width: 100%;">
+                                <lottie-player 
+                                    src="doctor.json" 
+                                    background="transparent"  
+                                    speed="1"  
+                                    style="width: 200px; height: 200px; margin-bottom: 1rem;"  
+                                    loop  
+                                    autoplay>
+                                </lottie-player>
+                            </div>
                             <h3>Awaiting Data</h3>
                             <p>Fill out the profile attributes on the left and click "Analyze & Predict" to generate your risk analysis.</p>
                         </div>
