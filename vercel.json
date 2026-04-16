@@ -20,6 +20,10 @@
         {
             "src": "doctor.json",
             "use": "@vercel/static"
+        },
+        {
+            "src": "home.json",
+            "use": "@vercel/static"
         }
     ],
     "routes": [
