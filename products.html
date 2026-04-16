@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Policy Prophet AI</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+        
+        .product-card {
+            background-color: var(--surface-container-lowest);
+            border-radius: 0.5rem;
+            padding: 2.5rem;
+            box-shadow: var(--ambient-shadow);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid transparent;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary);
+        }
+        
+        .product-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .product-card h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-family: 'Manrope', sans-serif;
+        }
+        
+        .product-card p {
+            color: var(--on-surface-variant);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 0.35rem 0.85rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            width: fit-content;
+        }
+        
+        .status-live {
+            background-color: var(--secondary-container);
+            color: var(--secondary);
+        }
+        
+        .status-beta {
+            background-color: #e0e9f4;
+            color: var(--primary);
+        }
+        
+        .status-upcoming {
+            background-color: var(--surface-container-high);
+            color: var(--on-surface-variant);
+        }
+
+        .action-link {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.2s;
+        }
+
+        .action-link:hover {
+            color: var(--secondary);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-brand" style="cursor: pointer;" onclick="window.location.href='index.html'">Policy Prophet AI</div>
+        <div class="nav-links">
+            <a href="products.html" style="color: var(--primary);">Products</a>
+            <a href="docs.html">Documentation</a>
+            <a href="security.html">Security</a>
+        </div>
+        <div class="nav-actions">
+            <button class="nav-btn" onclick="window.location.href='index.html'">Launch Predictor</button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="main-container">
+
+        <div class="hero" style="margin-bottom: 4rem;">
+            <div class="badge">
+                <i class="fa-solid fa-shapes"></i> AUTOMATED ACTUARIAL TOOLS
+            </div>
+            <h1>Our Product Ecosystem</h1>
+            <p>From predictive health estimating to claims fraud deterrence, explore the suite of AI tools powering the modern insurance landscape.</p>
+        </div>
+
+        <div class="product-grid">
+            
+            <!-- Flagship Product -->
+            <div class="product-card">
+                <div class="status-badge status-live">Live - Flagship</div>
+                <div class="product-icon">
+                    <i class="fa-solid fa-calculator"></i>
+                </div>
+                <h3>Premium Estimator</h3>
+                <p>Our flagship Architectural Ledger interface. Utilize a trained Random Forest algorithm to instantly project baseline health insurance premiums based on regional and physiological metadata.</p>
+                <a href="index.html" class="action-link">Launch Application <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="status-badge status-beta">Private Beta</div>
+                <div class="product-icon">
+                    <i class="fa-solid fa-magnifying-glass-chart"></i>
+                </div>
+                <h3>Fraud Shield API</h3>
+                <p>Detect anomalous medical claims using pattern identification mechanisms. Our unsupervised learning model highlights unlikely claim behaviors before capital is deployed.</p>
+                <a href="#" class="action-link" style="color: var(--on-surface-variant); cursor: not-allowed;">Join Waitlist</a>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="status-badge status-upcoming">In Development</div>
+                <div class="product-icon">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                </div>
+                <h3>Dynamic Underwriting Copilot</h3>
+                <p>A B2B extension assisting human underwriters by aggregating Electronic Health Records (EHR) into readable, high-confidence risk scores that expedite the policy approval pipeline.</p>
+                <span class="action-link" style="color: var(--on-surface-variant); cursor: default;">Coming Q4 2026</span>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top: 2rem;">
+        <div class="footer-left">
+            <div class="footer-brand">Policy Prophet AI</div>
+            <div class="footer-copy">© 2024 Policy Prophet AI. All rights reserved. Precise coverage through AI-driven risk assessment.</div>
+        </div>
+        <div class="footer-links">
+            <a href="#">PRIVACY POLICY</a>
+            <a href="https://github.com/swaroop-5-6-7/Policy-Prophet-AI" target="_blank">GITHUB REPO</a>
+        </div>
+    </footer>
+
+</body>
+</html>

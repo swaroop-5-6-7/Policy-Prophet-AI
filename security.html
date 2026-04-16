@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security - Policy Prophet AI</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .doc-section {
+            background-color: var(--surface-container-lowest);
+            border-radius: 0.5rem;
+            padding: 3rem;
+            box-shadow: var(--ambient-shadow);
+            margin-bottom: 2.5rem;
+        }
+        .doc-section h2 {
+            font-size: 1.75rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--outline-variant);
+        }
+        .doc-section h3 {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+        .doc-section p {
+            color: var(--on-surface-variant);
+            margin-bottom: 1.25rem;
+            line-height: 1.7;
+        }
+        .doc-section ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-bottom: 1.5rem;
+        }
+        .doc-section li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--on-surface-variant);
+            line-height: 1.6;
+        }
+        .doc-section li::before {
+            content: "\f023"; /* Lock icon */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+        
+        .roadmap-item {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            background-color: var(--surface-container-high);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+        }
+        
+        .roadmap-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background-color: var(--primary-container);
+            color: #fff;
+            border-radius: 50%;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+        
+        .roadmap-content h4 {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .roadmap-content p {
+            color: var(--on-surface-variant);
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-brand" style="cursor: pointer;" onclick="window.location.href='index.html'">Policy Prophet AI</div>
+        <div class="nav-links">
+            <a href="products.html">Products</a>
+            <a href="docs.html">Documentation</a>
+            <a href="security.html" style="color: var(--primary);">Security</a>
+        </div>
+        <div class="nav-actions">
+            <button class="nav-btn" onclick="window.location.href='index.html'">Launch Predictor</button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="main-container">
+
+        <div class="hero" style="margin-bottom: 3rem;">
+            <div class="badge">
+                <i class="fa-solid fa-shield-halved"></i> TRUST & PRIVACY
+            </div>
+            <h1>Security Roadmap</h1>
+            <p>At Policy Prophet AI, securing your actuarial data is our top priority. Discover how we protect you today and our robust plans for the future.</p>
+        </div>
+
+        <div class="doc-section">
+            <h2>Current Security Posture</h2>
+            <p>Our Premium Estimator operates on principles of strict data minimization and statelessness.</p>
+            <ul>
+                <li><strong>Stateless Processing:</strong> All risk profiles are processed in real-time memory. We do not write, log, or persist your health metrics to any database.</li>
+                <li><strong>Encrypted Connections:</strong> API traffic between your browser and our backend is protected by standard TLS (HTTPS) encryption.</li>
+                <li><strong>Client-side Validation:</strong> Malformed or anomalous inputs are caught and rejected client-side before ever reaching our models.</li>
+            </ul>
+        </div>
+
+        <div class="doc-section">
+            <h2>Future Architectural Updates</h2>
+            <p>As we scale our operations, we are taking proactive steps to transform our application into a fully compliant, enterprise-grade platform.</p>
+
+            <div class="roadmap-item">
+                <div class="roadmap-icon">
+                    <i class="fa-solid fa-user-lock"></i>
+                </div>
+                <div class="roadmap-content">
+                    <h4>End-to-End Encryption (E2EE)</h4>
+                    <p>We plan to implement zero-knowledge encryption protocols where health assertions are encrypted on your local device before transmission. Even our servers won't be able to read the raw data inputs.</p>
+                </div>
+            </div>
+
+            <div class="roadmap-item">
+                <div class="roadmap-icon">
+                    <i class="fa-solid fa-server"></i>
+                </div>
+                <div class="roadmap-content">
+                    <h4>Federated Learning Infrastructure</h4>
+                    <p>Our future models will train synchronously across decentralized user nodes. Instead of bringing data to the model, we will send the model to the data—drastically reducing exposure risks.</p>
+                </div>
+            </div>
+
+            <div class="roadmap-item">
+                <div class="roadmap-icon">
+                    <i class="fa-solid fa-file-contract"></i>
+                </div>
+                <div class="roadmap-content">
+                    <h4>SOC 2 Type II & HIPAA Compliance</h4>
+                    <p>We are actively building our internal controls, audit trails, and data processing agreements to formally achieve certifications that demonstrate institutional compliance.</p>
+                </div>
+            </div>
+
+            <div class="roadmap-item">
+                <div class="roadmap-icon">
+                    <i class="fa-solid fa-fingerprint"></i>
+                </div>
+                <div class="roadmap-content">
+                    <h4>Biometric Access Control</h4>
+                    <p>For B2B agency users, we will introduce hardware-backed FIDO2 authentication and WebAuthn to ensure only authorized brokers can query the Prophet engines.</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top: 2rem;">
+        <div class="footer-left">
+            <div class="footer-brand">Policy Prophet AI</div>
+            <div class="footer-copy">© 2024 Policy Prophet AI. All rights reserved. Precise coverage through AI-driven risk assessment.</div>
+        </div>
+        <div class="footer-links">
+            <a href="#">PRIVACY POLICY</a>
+            <a href="https://github.com/swaroop-5-6-7/Policy-Prophet-AI" target="_blank">GITHUB REPO</a>
+        </div>
+    </footer>
+
+</body>
+</html>
