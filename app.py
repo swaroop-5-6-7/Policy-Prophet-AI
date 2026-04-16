@@ -7,8 +7,12 @@ import pandas as pd
 app = Flask(__name__)
 # Enable CORS so the local index.html file can hit the API
 CORS(app)
+import os
 
-model = pickle.load(open("model.pkl", "rb"))
+# Get absolute path for the model to ensure Vercel can find it
+base_dir = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(base_dir, "model.pkl")
+model = pickle.load(open(model_path, "rb"))
 
 @app.route("/predict", methods=["POST"])
 def predict():

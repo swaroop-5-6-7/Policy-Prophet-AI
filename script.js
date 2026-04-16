@@ -109,7 +109,11 @@ document.addEventListener('DOMContentLoaded', () => {
             btnIcon.className = 'fa-solid fa-spinner fa-spin';
             submitBtn.disabled = true;
 
-            const response = await fetch('http://127.0.0.1:5000/predict', {
+            const API_URL = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' 
+                ? 'http://127.0.0.1:5000/predict' 
+                : '/predict';
+
+            const response = await fetch(API_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
