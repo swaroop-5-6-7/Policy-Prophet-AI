@@ -14,6 +14,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function showLanding() {
         appView.classList.add('hidden');
         landingView.classList.remove('hidden');
+        
+        // Reset Stepper
+        const stepper = document.querySelector('.stepper');
+        if (stepper) stepper.classList.remove('completed');
+        const step2 = document.getElementById('step-2');
+        if (step2) {
+            step2.classList.add('inactive');
+            step2.classList.remove('active');
+        }
     }
 
     navGetStarted.addEventListener('click', showApp);
@@ -307,6 +316,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Move Stepper
+            const stepper = document.querySelector('.stepper');
+            if (stepper) stepper.classList.add('completed');
             document.getElementById('step-2').classList.remove('inactive');
             document.getElementById('step-2').classList.add('active');
 

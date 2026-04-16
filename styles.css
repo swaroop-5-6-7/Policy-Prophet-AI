@@ -270,8 +270,13 @@ h1, h2, h3, h4, .nav-brand, .price, .badge, .title {
     top: 0;
     left: 0;
     height: 100%;
-    width: 50%;
+    width: 33%;
     background-color: var(--secondary);
+    transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.stepper.completed .step-line-progress {
+    width: 100%;
 }
 
 /* Form Grid */
