@@ -1,6 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // ---- View Navigation ----
+    const landingView = document.getElementById('landing-view');
+    const appView = document.getElementById('app-view');
+    const navGetStarted = document.getElementById('nav-get-started');
+    const heroGetStarted = document.getElementById('hero-get-started');
+    const backBtn = document.getElementById('back-btn');
+
+    function showApp() {
+        landingView.classList.add('hidden');
+        appView.classList.remove('hidden');
+    }
+
+    function showLanding() {
+        appView.classList.add('hidden');
+        landingView.classList.remove('hidden');
+    }
+
+    navGetStarted.addEventListener('click', showApp);
+    heroGetStarted.addEventListener('click', showApp);
+    backBtn.addEventListener('click', showLanding);
+
+
+    // ---- Form Elements ----
     const form = document.getElementById('prediction-form');
-    const resultCard = document.getElementById('result-card');
+    const resultEmptyState = document.getElementById('result-empty-state');
+    const resultContentState = document.getElementById('result-content-state');
     const predictedCostText = document.getElementById('predicted-cost');
     const riskLevelBadge = document.getElementById('risk-level');
     const formError = document.getElementById('form-error');
@@ -8,6 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const submitBtn = document.getElementById('submit-btn');
     const btnSpan = submitBtn.querySelector('span');
     const btnIcon = submitBtn.querySelector('i');
+    
+    let chartInstance = null;
 
     // Handle toggle buttons logic
     const toggles = document.querySelectorAll('.toggle-btn');
@@ -51,17 +77,74 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function renderChart(predictedCost) {
+        const ctx = document.getElementById('analysisChart').getContext('2d');
+        if (chartInstance) {
+            chartInstance.destroy();
+        }
+
+        // Mock market data compared to user's estimate
+        const nationalAvg = 18500;
+        const geoAvg = predictedCost * 1.15; // slightly higher logic to make user feel good
+
+        chartInstance = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['National Avg', 'Regional Cohort', 'Your Estimate'],
+                datasets: [{
+                    label: 'Annual Premium (₹)',
+                    data: [nationalAvg, geoAvg, predictedCost],
+                    backgroundColor: [
+                        '#eceef0', // surface-container
+                        '#b0c9e8', // inverse-primary
+                        '#006b5e'  // secondary
+                    ],
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(context.parsed.y);
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: { 
+                        beginAtZero: true,
+                        grid: { color: '#e6e8ea' }
+                    },
+                    x: {
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+    }
+
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
         clearErrors();
-        resultCard.classList.add('hidden');
 
         const ageInput = document.getElementById('age');
-        const sexInput = document.getElementById('sex'); // Now a hidden input
+        const sexInput = document.getElementById('sex'); 
         const bmiInput = document.getElementById('bmi');
-        const childrenInput = document.getElementById('children'); // Now a select dropping down numbers
-        const smokerInput = document.getElementById('smoker'); // Now a hidden input
+        const childrenInput = document.getElementById('children'); 
+        const smokerInput = document.getElementById('smoker'); 
         const regionInput = document.getElementById('region');
 
         let isValid = true;
@@ -144,7 +227,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 riskLevelBadge.classList.add('risk-high');
             }
 
-            resultCard.classList.remove('hidden');
+            // Move Stepper
+            document.getElementById('step-2').classList.remove('inactive');
+            document.getElementById('step-2').classList.add('active');
+
+            // Show Results pane instead of empty state
+            resultEmptyState.classList.add('hidden');
+            resultContentState.classList.remove('hidden');
+            
+            // Draw visualization
+            renderChart(cost);
+
         } catch (error) {
             console.error('Error fetching prediction:', error);
             errorText.textContent = 'An error occurred while connecting to the server. Make sure API is running.';

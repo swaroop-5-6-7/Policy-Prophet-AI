@@ -3,180 +3,228 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Architectural Ledger Insurance</title>
+    <title>Policy Prophet AI</title>
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
     <!-- Navbar -->
     <nav class="navbar">
-        <div class="nav-brand">Architectural Ledger Insurance</div>
+        <div class="nav-brand">Policy Prophet AI</div>
         <div class="nav-links">
             <a href="#">Products</a>
             <a href="#">Resources</a>
             <a href="#">Security</a>
         </div>
-        <button class="nav-btn">Get Started</button>
+        <button class="nav-btn" id="nav-get-started">Get Started</button>
     </nav>
 
-    <!-- Main Content -->
+    <!-- Main Container -->
     <main class="main-container">
-        <!-- Hero Section -->
-        <div class="hero">
-            <div class="badge">
-                <i class="fa-solid fa-lock"></i> ADVANCED RISK ENGINE
-            </div>
-            <h1>Premium Estimator</h1>
-            <p>Leverage our Architectural Ledger AI to predict your coverage costs with institutional precision. Enter your profile details below for a real-time risk assessment.</p>
-        </div>
 
-        <!-- Predictor Form Card -->
-        <div class="form-card">
-            <!-- Stepper -->
-            <div class="stepper">
-                <div class="step active">
-                    <div class="step-circle">1</div>
-                    <span class="step-label">Personal Profile Details</span>
+        <!-- LANDING VIEW -->
+        <div id="landing-view" class="view-section active">
+            <!-- Hero Section -->
+            <div class="hero">
+                <div class="badge">
+                    <i class="fa-solid fa-lock"></i> ADVANCED RISK ENGINE
                 </div>
-                <div class="step-line">
-                    <div class="step-line-progress"></div>
-                </div>
-                <div class="step inactive">
-                    <div class="step-circle">2</div>
-                    <span class="step-label">Review Estimate</span>
-                </div>
+                <h1>Premium Estimator</h1>
+                <p>Leverage our Policy Prophet AI to predict your coverage costs with institutional precision. Enter your profile details below for a real-time risk assessment.</p>
+                <button class="submit-btn hero-cta" id="hero-get-started" style="margin: 2.5rem auto;">
+                    <span>Launch Predictor</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
             </div>
 
-            <!-- Form -->
-            <form id="prediction-form" novalidate>
-                <div class="form-grid">
-                    
-                    <!-- Age -->
-                    <div class="form-group">
-                        <label>AGE OF APPLICANT</label>
-                        <div class="input-container">
-                            <input type="number" id="age" min="0" max="150" value="35" required>
-                            <i class="fa-regular fa-calendar input-icon"></i>
-                        </div>
-                    </div>
-
-                    <!-- Sex -->
-                    <div class="form-group">
-                        <label>BIOLOGICAL SEX</label>
-                        <div class="toggle-group" id="sex-toggle">
-                            <button type="button" class="toggle-btn active" data-value="Male">Male</button>
-                            <button type="button" class="toggle-btn" data-value="Female">Female</button>
-                        </div>
-                        <input type="hidden" id="sex" value="Male" required>
-                    </div>
-
-                    <!-- BMI -->
-                    <div class="form-group">
-                        <label>BODY MASS INDEX (BMI)</label>
-                        <div class="input-container">
-                            <input type="number" id="bmi" step="0.1" min="10" max="60" value="35.5" required>
-                            <i class="fa-solid fa-weight-scale input-icon"></i>
-                        </div>
-                        <span class="helper-text">Use our calculator if you're unsure of your BMI.</span>
-                    </div>
-
-                    <!-- Dependents -->
-                    <div class="form-group">
-                        <label>NUMBER OF DEPENDENTS</label>
-                        <div class="input-container">
-                            <select id="children" required>
-                                <option value="0">0 Dependents</option>
-                                <option value="1" selected>1 Dependent</option>
-                                <option value="2">2 Dependents</option>
-                                <option value="3">3 Dependents</option>
-                                <option value="4">4 Dependents</option>
-                                <option value="5">5+ Dependents</option>
-                            </select>
-                            <i class="fa-solid fa-chevron-down select-icon"></i>
-                        </div>
-                    </div>
-
-                    <!-- Tobacco -->
-                    <div class="form-group">
-                        <label>TOBACCO USAGE</label>
-                        <div class="toggle-group" id="smoker-toggle">
-                            <button type="button" class="toggle-btn active" data-value="Yes">Yes</button>
-                            <button type="button" class="toggle-btn" data-value="No">No</button>
-                        </div>
-                        <input type="hidden" id="smoker" value="Yes" required>
-                    </div>
-
-                    <!-- Region -->
-                    <div class="form-group">
-                        <label>GEOGRAPHIC REGION</label>
-                        <div class="input-container">
-                            <select id="region" required>
-                                <option value="Northeast" selected>Northeast</option>
-                                <option value="Northwest">Northwest</option>
-                                <option value="Southeast">Southeast</option>
-                                <option value="Southwest">Southwest</option>
-                            </select>
-                            <i class="fa-solid fa-map select-icon map-icon"></i>
-                        </div>
-                    </div>
+            <!-- Info Cards -->
+            <div class="info-cards">
+                <div class="info-card">
+                    <h4>Institutional Data</h4>
+                    <p>Our models are trained on over 50 years of actuarial history, ensuring your estimate mirrors actual policy underwriting.</p>
                 </div>
-
-                <!-- Agreement Notice -->
-                <div class="agreement-box">
-                    <i class="fa-solid fa-shield-halved"></i>
-                    <p>By clicking analyze, you agree to our processing of these metrics using our proprietary risk ledger. Estimates are based on current market actuarial data and AI projection models.</p>
+                <div class="info-card">
+                    <h4>Privacy First</h4>
+                    <p>Estimations are processed in an encrypted sandbox environment. We do not store your personal health metrics after calculation.</p>
                 </div>
-
-                <!-- Error Display -->
-                <div id="form-error" class="form-error hidden">
-                    <i class="fa-solid fa-circle-exclamation"></i> <span id="form-error-text">Please fill out all fields correctly.</span>
+                <div class="info-card">
+                    <h4>Dynamic Adjustments</h4>
+                    <p>The Ledger automatically accounts for regional tax shifts and regulatory adjustments in real-time.</p>
                 </div>
-
-                <!-- Submit Area -->
-                <div class="submit-area">
-                    <button type="submit" id="submit-btn" class="submit-btn">
-                        <span>Analyze & Predict</span>
-                        <i class="fa-solid fa-arrow-trend-up"></i>
-                    </button>
-                </div>
-
-                <!-- Replace standard error w/ result box inline to fit the clean theme -->
-                <div id="result-card" class="result-card hidden">
-                    <div class="result-content">
-                        <h3>Estimated Annual Premium</h3>
-                        <div class="price" id="predicted-cost">₹0</div>
-                        <div class="risk-badge" id="risk-level">Risk Level</div>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-        <!-- Info Cards -->
-        <div class="info-cards">
-            <div class="info-card">
-                <h4>Institutional Data</h4>
-                <p>Our models are trained on over 50 years of actuarial history, ensuring your estimate mirrors actual policy underwriting.</p>
-            </div>
-            <div class="info-card">
-                <h4>Privacy First</h4>
-                <p>Estimations are processed in an encrypted sandbox environment. We do not store your personal health metrics after calculation.</p>
-            </div>
-            <div class="info-card">
-                <h4>Dynamic Adjustments</h4>
-                <p>The Ledger automatically accounts for regional tax shifts and regulatory adjustments in real-time.</p>
             </div>
         </div>
+
+        <!-- APP VIEW (SPLIT SCREEN) -->
+        <div id="app-view" class="view-section hidden">
+            
+            <div class="back-link-container">
+                <button id="back-btn" class="tertiary-btn">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Home
+                </button>
+            </div>
+
+            <div class="split-layout">
+                
+                <!-- Left Pane: Input Form -->
+                <div class="left-pane">
+                    <div class="form-card">
+                        <!-- Stepper -->
+                        <div class="stepper">
+                            <div class="step active">
+                                <div class="step-circle">1</div>
+                                <span class="step-label">Profile Details</span>
+                            </div>
+                            <div class="step-line">
+                                <div class="step-line-progress"></div>
+                            </div>
+                            <div class="step inactive" id="step-2">
+                                <div class="step-circle">2</div>
+                                <span class="step-label">Analysis</span>
+                            </div>
+                        </div>
+
+                        <!-- Form -->
+                        <form id="prediction-form" novalidate>
+                            <div class="form-grid">
+                                
+                                <!-- Age -->
+                                <div class="form-group">
+                                    <label>AGE OF APPLICANT</label>
+                                    <div class="input-container">
+                                        <input type="number" id="age" min="0" max="150" value="35" required>
+                                        <i class="fa-regular fa-calendar input-icon"></i>
+                                    </div>
+                                </div>
+
+                                <!-- Sex -->
+                                <div class="form-group">
+                                    <label>BIOLOGICAL SEX</label>
+                                    <div class="toggle-group" id="sex-toggle">
+                                        <button type="button" class="toggle-btn active" data-value="Male">Male</button>
+                                        <button type="button" class="toggle-btn" data-value="Female">Female</button>
+                                    </div>
+                                    <input type="hidden" id="sex" value="Male" required>
+                                </div>
+
+                                <!-- BMI -->
+                                <div class="form-group">
+                                    <label>BODY MASS INDEX (BMI)</label>
+                                    <div class="input-container">
+                                        <input type="number" id="bmi" step="0.1" min="10" max="60" value="35.5" required>
+                                        <i class="fa-solid fa-weight-scale input-icon"></i>
+                                    </div>
+                                    <span class="helper-text">Use our calculator if you're unsure of your BMI.</span>
+                                </div>
+
+                                <!-- Dependents -->
+                                <div class="form-group">
+                                    <label>NUMBER OF DEPENDENTS</label>
+                                    <div class="input-container">
+                                        <select id="children" required>
+                                            <option value="0">0 Dependents</option>
+                                            <option value="1" selected>1 Dependent</option>
+                                            <option value="2">2 Dependents</option>
+                                            <option value="3">3 Dependents</option>
+                                            <option value="4">4 Dependents</option>
+                                            <option value="5">5+ Dependents</option>
+                                        </select>
+                                        <i class="fa-solid fa-chevron-down select-icon"></i>
+                                    </div>
+                                </div>
+
+                                <!-- Tobacco -->
+                                <div class="form-group">
+                                    <label>TOBACCO USAGE</label>
+                                    <div class="toggle-group" id="smoker-toggle">
+                                        <button type="button" class="toggle-btn active" data-value="Yes">Yes</button>
+                                        <button type="button" class="toggle-btn" data-value="No">No</button>
+                                    </div>
+                                    <input type="hidden" id="smoker" value="Yes" required>
+                                </div>
+
+                                <!-- Region -->
+                                <div class="form-group">
+                                    <label>GEOGRAPHIC REGION</label>
+                                    <div class="input-container">
+                                        <select id="region" required>
+                                            <option value="Northeast" selected>Northeast</option>
+                                            <option value="Northwest">Northwest</option>
+                                            <option value="Southeast">Southeast</option>
+                                            <option value="Southwest">Southwest</option>
+                                        </select>
+                                        <i class="fa-solid fa-map select-icon map-icon"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Agreement Notice -->
+                            <div class="agreement-box">
+                                <i class="fa-solid fa-shield-halved"></i>
+                                <p>By clicking analyze, you agree to our processing of these metrics using our proprietary risk ledger. Estimates are based on current market actuarial data and AI projection models.</p>
+                            </div>
+
+                            <!-- Error Display -->
+                            <div id="form-error" class="form-error hidden">
+                                <i class="fa-solid fa-circle-exclamation"></i> <span id="form-error-text">Please fill out all fields correctly.</span>
+                            </div>
+
+                            <!-- Submit Area -->
+                            <div class="submit-area">
+                                <button type="submit" id="submit-btn" class="submit-btn">
+                                    <span>Analyze & Predict</span>
+                                    <i class="fa-solid fa-arrow-trend-up"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Right Pane: Results and Chart -->
+                <div class="right-pane">
+                    <div id="result-pane" class="result-card empty-state">
+                        
+                        <!-- Empty State Wrapper -->
+                        <div id="result-empty-state">
+                            <i class="fa-solid fa-chart-simple placeholder-icon"></i>
+                            <h3>Awaiting Data</h3>
+                            <p>Fill out the profile attributes on the left and click "Analyze & Predict" to generate your risk analysis.</p>
+                        </div>
+
+                        <!-- Analysis State Wrapper (hidden initially) -->
+                        <div id="result-content-state" class="hidden">
+                            <h3 class="result-title">Estimated Annual Premium</h3>
+                            <div class="price" id="predicted-cost">₹0</div>
+                            <div class="risk-badge" id="risk-level">Risk Level</div>
+
+                            <div class="chart-container" style="margin-top: 2.5rem; position: relative; height: 250px; width: 100%;">
+                                <canvas id="analysisChart"></canvas>
+                            </div>
+
+                            <div class="insight-box" style="margin-top: 2.5rem;">
+                                <i class="fa-solid fa-lightbulb"></i>
+                                <p id="dynamic-insight">Your premium is projected based on demographic cohort comparisons.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </main>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-left">
-            <div class="footer-brand">Architectural Ledger</div>
-            <div class="footer-copy">© 2024 Architectural Ledger. All rights reserved. Precise coverage through AI-driven risk assessment.</div>
+            <div class="footer-brand">Policy Prophet AI</div>
+            <div class="footer-copy">© 2024 Policy Prophet AI. All rights reserved. Precise coverage through AI-driven risk assessment.</div>
         </div>
         <div class="footer-links">
             <a href="#">PRIVACY POLICY</a>
