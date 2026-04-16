@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - Policy Prophet AI</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .doc-section {
+            background-color: var(--surface-container-lowest);
+            border-radius: 0.5rem;
+            padding: 3rem;
+            box-shadow: var(--ambient-shadow);
+            margin-bottom: 2.5rem;
+        }
+        .doc-section h2 {
+            font-size: 1.75rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--outline-variant);
+        }
+        .doc-section h3 {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+        .doc-section p {
+            color: var(--on-surface-variant);
+            margin-bottom: 1.25rem;
+            line-height: 1.7;
+        }
+        .doc-section ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-bottom: 1.5rem;
+        }
+        .doc-section li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--on-surface-variant);
+            line-height: 1.6;
+        }
+        .doc-section li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+        .api-endpoint {
+            background-color: var(--surface-container-high);
+            padding: 1rem;
+            border-radius: 0.375rem;
+            font-family: monospace;
+            font-size: 1rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .api-method {
+            background-color: var(--secondary);
+            color: #fff;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+        .code-block {
+            background-color: var(--surface-container-low);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: var(--on-surface);
+            border: 1px solid var(--outline-variant);
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-brand" style="cursor: pointer;" onclick="window.location.href='index.html'">Policy Prophet AI</div>
+        <div class="nav-links">
+            <a href="index.html">Estimator</a>
+            <a href="docs.html" style="color: var(--primary);">Documentation</a>
+            <a href="https://github.com/swaroop-5-6-7/Policy-Prophet-AI" target="_blank">GitHub</a>
+        </div>
+        <div class="nav-actions">
+            <button class="nav-btn" onclick="window.location.href='index.html'">Launch Predictor</button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="main-container">
+
+        <div class="hero" style="margin-bottom: 3rem;">
+            <div class="badge">
+                <i class="fa-solid fa-book"></i> SYSTEM DOCUMENTATION
+            </div>
+            <h1>Architectural Ledger API</h1>
+            <p>Complete technical documentation, API references, and integration guides for the Policy Prophet AI prediction engine.</p>
+        </div>
+
+        <div class="doc-section">
+            <h2>Overview</h2>
+            <p><strong>Policy Prophet AI</strong> is a high-fidelity, end-to-end Machine Learning web application designed to predict health insurance coverage costs with institutional precision.</p>
+            <p>The project combines a robust Python-based Random Forest Machine Learning model with a premium, corporate-style web interface ("Architectural Ledger") to provide users with real-time actuarial risk assessments.</p>
+        </div>
+
+        <div class="doc-section">
+            <h2>Architecture</h2>
+            <p>The application architecture separates the presentation layer from the predictive logic.</p>
+            <ul>
+                <li><strong>Frontend:</strong> A static, responsive interface built with HTML5, Vanilla CSS, and Vanilla JavaScript. It captures user inputs and visualizes predictions dynamically using Chart.js.</li>
+                <li><strong>Backend:</strong> A Python Flask API that loads the pre-trained Machine Learning model (`model.pkl`) into memory and exposes RESTful endpoints for real-time predictions.</li>
+                <li><strong>Model:</strong> A robust Scikit-Learn `RandomForestRegressor` trained on historical Medical Cost Personal Datasets. Variables include Age, Biological Sex, BMI, Dependents, Tobacco Usage, and Geographic Region.</li>
+            </ul>
+        </div>
+
+        <div class="doc-section">
+            <h2>API Reference</h2>
+            <p>The prediction engine exposes a single REST endpoint for calculating estimated premium costs.</p>
+
+            <h3>Predict Premium</h3>
+            <div class="api-endpoint">
+                <span class="api-method">POST</span> /predict
+            </div>
+            <p>Calculates the annual health insurance premium based on demographic and health indicators.</p>
+
+            <h3>Request Payload (JSON)</h3>
+            <div class="code-block">
+{
+  "age": 35,
+  "sex": "Male",
+  "bmi": 28.5,
+  "children": 1,
+  "smoker": "No",
+  "region": "Northeast"
+}
+            </div>
+
+            <ul>
+                <li><strong>age</strong> (integer): The age of the applicant (0-150).</li>
+                <li><strong>sex</strong> (string): "Male" or "Female".</li>
+                <li><strong>bmi</strong> (float): Body Mass Index (10.0 - 60.0).</li>
+                <li><strong>children</strong> (integer): Number of dependents (0-5+).</li>
+                <li><strong>smoker</strong> (string): Tobacco usage ("Yes" or "No").</li>
+                <li><strong>region</strong> (string): Geographic location ("Northeast", "Northwest", "Southeast", "Southwest").</li>
+            </ul>
+
+            <h3>Success Response</h3>
+            <div class="code-block">
+{
+  "predicted_cost": 4725.32
+}
+            </div>
+        </div>
+
+        <div class="doc-section">
+            <h2>Local Development</h2>
+            <p>To run the application locally, ensure you have Python 3 installed.</p>
+            
+            <h3>1. Install Dependencies</h3>
+            <div class="code-block">pip install flask flask-cors pandas numpy scikit-learn</div>
+            
+            <h3>2. Start the Backend API</h3>
+            <div class="code-block">python app.py</div>
+            <p>The server will start running on <code>http://127.0.0.1:5000</code>.</p>
+            
+            <h3>3. Launch the Frontend</h3>
+            <p>Open <code>index.html</code> in your preferred browser and start making predictions.</p>
+            <p><em>Optional:</em> If you wish to retrain the model, run <code>python train_model.py</code> before starting the Flask server.</p>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top: 2rem;">
+        <div class="footer-left">
+            <div class="footer-brand">Policy Prophet AI</div>
+            <div class="footer-copy">© 2024 Policy Prophet AI. All rights reserved. Precise coverage through AI-driven risk assessment.</div>
+        </div>
+        <div class="footer-links">
+            <a href="#">PRIVACY POLICY</a>
+            <a href="https://github.com/swaroop-5-6-7/Policy-Prophet-AI" target="_blank">GITHUB REPO</a>
+        </div>
+    </footer>
+
+</body>
+</html>
